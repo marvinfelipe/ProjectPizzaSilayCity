@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Pizza Hub Silay - Order your favorite pizzas online">
+    <meta name="theme-color" content="#f9bd33">
+    <title>Project Pizza Hub Silay</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preload critical resources -->
+    <!-- <link rel="preload" href="/assets/logo.png" as="image"> -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <!-- <img src="/assets/logo.png" alt="Pizza Hub Silay Logo" width="50" height="50"> -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Order Form -->
+        <section class="form-container">
+            <form id="orderForm" class="order-form">
+                <!-- Pizza Sections Container -->
+                <div id="pizzaSections" class="pizza-sections"></div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="total-amount">
+                        <strong>Total:</strong>
+                        <span id="totalAmount">₱0.00</span>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div class="customer-info">
+                    <h2>Customer Information</h2>
+                    <div class="form-group">
+                        <label for="customerName">Name:</label>
+                        <input 
+                            type="text" 
+                            id="customerName" 
+                            name="customerName"
+                            required 
+                            autocomplete="name"
+                            minlength="2"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input 
+                            type="tel" 
+                            id="phoneNumber" 
+                            name="phoneNumber"
+                            pattern="[0-9]{11}" 
+                            placeholder="09XXXXXXXXX"
+                            required
+                            autocomplete="tel"
+                        >
+                    </div>
+
+                    <!-- Order Type Selection -->
+                    <div class="form-group">
+                        <label>Order Type:</label>
+                        <div class="radio-group" role="radiogroup">
+                            <input 
+                                type="radio" 
+                                id="pickupOrder" 
+                                name="orderType" 
+                                value="pickup" 
+                                required
+                            >
+                            <label for="pickupOrder">Pick Up</label>
+
+                            <input 
+                                type="radio" 
+                                id="deliveryOrder" 
+                                name="orderType" 
+                                value="delivery"
+                            >
+                            <label for="deliveryOrder">Delivery</label>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Location (Hidden by default) -->
+                    <div id="deliverySection" class="form-group hidden">
+                        <label for="location">Delivery Location:</label>
+                        <input 
+                            type="text" 
+                            id="location" 
+                            name="location"
+                            placeholder="Enter your delivery address"
+                        >
+                    </div>
+
+                    <!-- Pickup/Delivery Time -->
+                    <div class="form-group">
+                        <label for="pickupTime">Preferred Time:</label>
+                        <input 
+                            type="time" 
+                            id="pickupTime" 
+                            name="pickupTime"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="button button-primary">
+                    Place Order
+                </button>
+            </form>
+        </section>
+
+        <!-- Orders Section -->
+        <section class="form-container">
+            <!-- Pending Orders -->
+            <div class="orders-section">
+                <h2>Pending Orders</h2>
+                <div id="pendingOrders" class="orders-list"></div>
+            </div>
+
+            <!-- Completed Orders -->
+            <div class="orders-section">
+                <div class="section-header">
+                    <button id="toggleCompleted" class="button button-secondary">
+                        Show Completed Orders
+                    </button>
+                    <div class="action-buttons">
+                        <button id="exportOrders" class="button button-secondary">
+                            <i class="fas fa-download"></i> Export Orders
+                        </button>
+                        <button id="clearCompleted" class="button button-secondary">
+                            <i class="fas fa-trash"></i> Clear Completed
+                        </button>
+                    </div>
+                </div>
+                <div id="completedOrders" class="orders-list hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button 
+        id="scrollTopBtn" 
+        class="scroll-top hidden" 
+        aria-label="Scroll to top"
+    >
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Error/Success Toast Messages -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="../src/main.js"></script>
+
+    </body>
+</html>
